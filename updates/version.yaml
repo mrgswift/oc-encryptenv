@@ -7,4 +7,6 @@
 1.0.3:
     - 'Updated composer.json package name to use correct naming convention'
 1.0.4:
-    - 'Updated composer.json'    
+    - 'Updated composer.json'
+1.0.5:
+    - 'Updated README.md with Plugin Removal Instructions'    
