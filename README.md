@@ -1,4 +1,4 @@
-## **oc-encryptenv**
+## **oc-encryptenv-plugin**
 
 [![GitHub license](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/mrgswift/laravel-encryptenv/blob/master/LICENSE)
 
@@ -41,9 +41,11 @@ config/encryptenv.php
 By default the composer.json file that is included with OctoberCMS does not have an autoload block. The following autoload block (below) will automatically be added to your composer.json file on first run of the plugin.  This adds the helper function `secEnv` early on in composer's autoload execution to ensure decryption happens early enough to prevent errors.  If the plugin throws the exception `Unable to automatically add file autoloader to composer.json file` this means you either already have an autoload block or the plugin was unable to automatically add this autoload block (file permissions?).  In this case you will need to add this manually to your composer.json
 
 ```
-    "autoload": {
-        "files": ["app/Helpers/secEnv.php"]
-    },
+"autoload": {
+    "files": [
+        "plugins/mg/encryptenv/helpers/secEnv.php"
+    ]
+}
 ```
 Re-generate your autoload files, otherwise the new autoload entry you added to `composer.json` will not be seen by composer
 ```console
@@ -214,6 +216,36 @@ The two examples above will pass CONFIGKEY into PHP's $_SERVER array as $_SERVER
 Regarding IIS setups.  I have no idea how to do this in IIS, though I suspect it is possible.  If anyone
 knows how to accomplish the same thing with the same level of security in an IIS server environment, feel free to do a pull 
 request. Thanks!
+
+
+
+## Uninstall/Remove Plugin
+
+For most plugins the October plugin manager is able to successfully remove everything related to a plugin when you remove it. However, since this plugin adds an entry to your main project composer.json and a config file to the main config directory, some extra steps are needed once you remove this plugin.
+
+1. Remove the plugin using October's plugin manager or using CLI command
+
+2. Remove all references to the secEnv helper function in all of your configuration files
+
+3. Edit your composer.json file and remove the added file property in the autoload block.  If nothing else is in the autoload block, you can remove the autoload block entirely.
+
+```
+"autoload": {
+   "files": [
+       "plugins/mg/encryptenv/helpers/secEnv.php"
+   ]
+}
+```
+4. Remove the configuration file `config/encryptenv.php`
+
+5. Re-generate your autoload files, otherwise old autoload entries of now non-existent files will still try to be loaded during execution of your OctoberCMS application
+
+```console
+$ composer dump-autoload
+```
+
+Done!  The plugin is now completely removed from your OctoberCMS application.
+
 
 ## Documentation
 
