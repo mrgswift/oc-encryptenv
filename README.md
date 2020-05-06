@@ -1,8 +1,4 @@
-## **oc-encryptenv**
-
-[![GitHub license](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/mrgswift/laravel-encryptenv/blob/master/LICENSE)
-
-This is an OctoberCMS plugin that is a wrapper for the composer package mrgswift/encryptenv that allows you to encrypt your environment variables in your .env file
+This OctoberCMS plugin is a wrapper for the composer package mrgswift/encryptenv which allows you to encrypt your environment variables in your .env file
 
 This is accomplished through the added helper function `secEnv()` to replace `env()` when using
 an encrypted value in your environment file. 
@@ -10,12 +6,11 @@ an encrypted value in your environment file.
 Also included is a console command to encrypt 
 the values of all flagged .env  variables.
 
+## IMPORTANT
+** This plugin requires that you have write access to your apache/nginx configuration files and requires at least basic knowledge of how your apache/nginx configuration files work.  Issues/questions regarding configuration of apache/nginx or any other web service daemon are beyond the scope of plugin support. **
+
+
 Some setup/configuration is required to get everything working correctly.
-
-## Table of Contents
-
-- [Install](#install)
-- [Documentation](#documentation)
 
 ## Install
 
@@ -109,7 +104,7 @@ Required Settings in `config/encryptenv.php`
     'encrypt_flag' => '!ENC:',
 ```
 #
-Other Settings in `config/encryptenv.php` 
+Other (Unsupported) Settings in `config/encryptenv.php` 
 
 ****custom_config_file**** 
 ```php
@@ -178,9 +173,9 @@ of this README.  For help with nginx or apache, or for more information refer to
 VirtualHost block example with example CONFIGKEY
 ```
 <VirtualHost *:80>
-    DocumentRoot "/path/to/laravel/docroot"
+    DocumentRoot "/path/to/octobercms/docroot/public"
     ServerName yourlaravelapp.tld
-    <If "%{SCRIPT_FILENAME} == '/path/to/laravel/docroot/public/index.php'">
+    <If "%{SCRIPT_FILENAME} == '/path/to/octobercms/docroot/public/index.php'">
        SetEnv CONFIGKEY "51TMszQEvpAlVxbe"
     </If>
     ...
@@ -195,7 +190,7 @@ PHP location block example with example CONFIGKEY
     location ~ \.php$ {
         set $script_filename $document_root$fastcgi_script_name;
         set $configkey "";
-        if ($script_filename = "/path/to/laravel/docroot/public/index.php") {
+        if ($script_filename = "/path/to/octobercms/docroot/public/index.php") {
           set $configkey "51TMszQEvpAlVxbe";
         }
         try_files $uri /index.php =404;
@@ -261,7 +256,7 @@ Just like the env() helper function, the fallback value for secEnv is optional.
 
 ### Using the Encryption Flag
 
-Edit the environment variables file you are using and add the encryption flag defined in 
+Edit the environment variables file and add the encryption flag defined in 
 `config/encryptenv.php` as a prefix to each value you want to encrypt
 
 Example .env File with default Encrypt Flag !ENC:
@@ -360,24 +355,3 @@ MAIL_PASSWORD=ENC:eyJpdiI6IlU4a2lhMEFqa3hlcWZyQTlyOXd1c2c9PSIsInZhbHVlIjoiVENPRF
 If you set everything up correctly, OctoberCMS should now be working with your encrypted environment variable values.
 
 Note: You should run `php artisan config:clear` to clear your config cache just to be sure everything is truly working.
-
-### File Permissions
-
-You should make `public/index.php` read-only to non-privileged users. This prevents a malicious user from adding code to
-index.php in order to retrieve decrypted config values or the decryption key itself (assuming conditional CONFIGKEY pass 
-explained in Install [Configure Your Web Service] section was followed).
-
-Your web service configuration files should only be readable by the root user, otherwise a non-privileged user can read
-the CONFIGKEY (encryption key) by opening the configuration file in an editor like vim, emacs, nano, or simply using the
-cat command in a shell. 
-
-Most apache and nginx setups run their parent process as root, so there should not be an issue of the configuration files
-being readable by apache/nginx.
-
-
-## License
-
-[MIT][1]
-
-[1]: https://github.com/mrgswift/laravel-encryptenv/blob/master/LICENSE
-
