@@ -20,7 +20,7 @@ Some setup/configuration is required to get everything working correctly.
 
 ###### Since some components in this package are needed early on in composer's autoload execution, installation steps must be done in this order (below).  If you don't follow this order, composer may throw an error and things will break.
 
-#### If you receive errors about classes missing in the `mrgswift\EncryptEnv` namespace, the composer dependency may not be installed. Use composer to install the package
+#### Because the dependency package `mrgswift/laravel-encryptenv` must be available early on in composer's autoload execution (before OctoberCMS), this composer dependency must be installed manually. Use composer to install the package
 ```console
 $ composer require mrgswift/laravel-encryptenv
 ```
@@ -45,7 +45,7 @@ By default the composer.json file that is included with OctoberCMS does not have
         "files": ["app/Helpers/secEnv.php"]
     },
 ```
-Clear out and re-generate your autoload files, otherwise the new autoload entry you added to `composer.json` will not be seen by composer
+Re-generate your autoload files, otherwise the new autoload entry you added to `composer.json` will not be seen by composer
 ```console
 $ composer dump-autoload
 ```
