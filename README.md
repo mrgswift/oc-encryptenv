@@ -20,13 +20,15 @@ Some setup/configuration is required to get everything working correctly.
 
 ###### Since some components in this package are needed early on in composer's autoload execution, installation steps must be done in this order (below).  If you don't follow this order, composer may throw an error and things will break.
 
-#### Because the dependency package `mrgswift/laravel-encryptenv` must be available early on in composer's autoload execution (before OctoberCMS), this composer dependency must be installed manually. Use composer to install the package
+#### 1. Install this plugin using October Marketplace or using the CLI command
+
+#### 2. Because the dependency package `mrgswift/laravel-encryptenv` must be available early on in composer's autoload execution (before OctoberCMS), this composer dependency must be installed manually. Use composer to install the package
 ```console
 $ composer require mrgswift/laravel-encryptenv
 ```
 #
 
-#### Files automatically copied from mrgswift/encryptenv dependency package
+#### 3. Files automatically copied from mrgswift/encryptenv dependency package
 
 The default configuration file from the composer package mrgswift/encryptenv is automatically copied to the config path on first run
 
@@ -36,16 +38,14 @@ config/encryptenv.php
 
 #
 
-#### An autoload block with a files property will automatically be added to your `composer.json` file
+#### 4. An autoload block with a files property will automatically be added to your `composer.json` file
 
 By default the composer.json file that is included with OctoberCMS does not have an autoload block. The following autoload block (below) will automatically be added to your composer.json file on first run of the plugin.  This adds the helper function `secEnv` early on in composer's autoload execution to ensure decryption happens early enough to prevent errors.  If the plugin throws the exception `Unable to automatically add file autoloader to composer.json file` this means you either already have an autoload block or the plugin was unable to automatically add this autoload block (file permissions?).  In this case you will need to add this manually to your composer.json
 
 ```
-"autoload": {
-    "files": [
-        "plugins/mg/encryptenv/helpers/secEnv.php"
-    ]
-}
+    "autoload": {
+        "files": ["plugins/mg/encryptenv/helpers/secEnv.php"]
+    },
 ```
 Re-generate your autoload files, otherwise the new autoload entry you added to `composer.json` will not be seen by composer
 ```console
@@ -53,9 +53,10 @@ $ composer dump-autoload
 ```
 **NOTE: If your OctoberCMS application only returns a blank white screen, you most likely need to run** `composer dump-autoload`
 
+
 #
 
-#### Update `config/encryptenv.php` with desired settings
+#### 5. Update `config/encryptenv.php` with desired settings
 
 Required Settings in `config/encryptenv.php`
 
@@ -151,7 +152,7 @@ Other (Unsupported) Settings in `config/encryptenv.php`
 ```
 #
 
-#### Configure your web service (apache/nginx) to pass your CONFIGKEY (encryption key) to PHP
+#### 6. Configure your web service (apache/nginx) to pass your CONFIGKEY (encryption key) to PHP
 
 This package requires that the server environment variable CONFIGKEY be passed by your web service to your 
 OctoberCMS application.  Your CONFIGKEY is either 16 characters (for AES-128-CBC cipher) or 32 characters long 
