@@ -11,7 +11,7 @@ Also included is a console command to encrypt
 the values of all flagged .env  variables.
 
 ## IMPORTANT
-** This plugin requires that you have write access to your apache/nginx configuration files and requires at least basic knowledge of how your apache/nginx configuration files work.  Issues/questions regarding configuration of apache/nginx or any other web service daemon are beyond the scope of plugin support. **
+**This plugin requires that you have write access to your apache/nginx configuration files and requires at least basic knowledge of how your apache/nginx configuration files work.  Issues/questions regarding configuration of apache/nginx or any other web service daemon are beyond the scope of plugin support.**
 
 
 Some setup/configuration is required to get everything working correctly.
