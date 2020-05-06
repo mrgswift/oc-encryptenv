@@ -1,0 +1,6 @@
+plugin:
+  name: 'mg.encryptenv::lang.plugin.name'
+  description: 'mg.encryptenv::lang.plugin.description'
+  author: 'Matthew Guillot'
+  icon: oc-icon-lock
+  homepage: 'https://github.com/mrgswift/oc-encryptenv'
