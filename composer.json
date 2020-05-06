@@ -1,6 +1,8 @@
 {
-  "name": "mg/encryptenv",
+  "name": "mg/oc-encryptenv-plugin",
   "description": "OctoberCMS wrapper for mrgswift/laravel-encryptenv",
+  "type": "october-plugin",
+  "license": "MIT",
   "keywords": [
     "october",
     "Environment",
