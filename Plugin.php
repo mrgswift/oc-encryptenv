@@ -13,7 +13,7 @@ class Plugin extends PluginBase
             'name'        => 'mg.encryptenv::lang.plugin.name',
             'description' => 'mg.encryptenv::lang.plugin.description',
             'author'      => 'Matthew Guillot',
-            'icon'        => 'icon-files-o'
+            'icon'        => 'icon-lock'
         ];
     }
     public function boot()

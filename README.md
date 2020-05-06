@@ -50,6 +50,8 @@ Clear out and re-generate your autoload files, otherwise the new autoload entry 
 ```console
 $ composer dump-autoload
 ```
+**NOTE: If your OctoberCMS application only returns a blank white screen, you most likely need to run** `composer dump-autoload`
+
 #
 
 #### Update `config/encryptenv.php` with desired settings
