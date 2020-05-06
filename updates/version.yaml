@@ -5,4 +5,6 @@
 1.0.2:
     - 'Updated README.md to be the same as October Marketplace Documentation'
 1.0.3:
-    - 'Updated composer.json package name to use correct naming convention'    
+    - 'Updated composer.json package name to use correct naming convention'
+1.0.4:
+    - 'Updated composer.json'    
