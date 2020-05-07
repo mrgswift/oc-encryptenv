@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/mrgswift/laravel-encryptenv/blob/master/LICENSE)
 
-This OctoberCMS plugin is a wrapper for the composer package mrgswift/encryptenv which allows you to encrypt your environment variables in your .env file
+This OctoberCMS plugin is a wrapper for the composer package mrgswift/laravel-encryptenv which allows you to encrypt your environment variables in your .env file
 
 This is accomplished through the added helper function `secEnv()` to replace `env()` when using
 an encrypted value in your environment file. 
@@ -30,7 +30,7 @@ $ composer require mrgswift/laravel-encryptenv
 
 #### 3. Files automatically copied from mrgswift/encryptenv dependency package
 
-The default configuration file from the composer package mrgswift/encryptenv is automatically copied to the config path on first run
+The default configuration file from the composer package mrgswift/laravel-encryptenv is automatically copied to the config path on first run
 
 ```
 config/encryptenv.php
